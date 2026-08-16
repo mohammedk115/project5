@@ -1,5 +1,4 @@
 import numpy as np
-
 from sklearn.metrics.pairwise import cosine_similarity
 
 from embeddings import EmbeddingEngine
@@ -9,7 +8,6 @@ from database_service import get_all_courses
 class RecommendationEngine:
 
     def __init__(self):
-
         self.embedding_engine = EmbeddingEngine()
 
         # Get courses from database
@@ -69,10 +67,7 @@ class RecommendationEngine:
             recommendations.append({
                 "course_id": course["id"],
                 "course": course["title"],
-                "similarity_score": round(
-                    score,
-                    4
-                ),
+                "similarity_score": round(score, 4),
                 "relevance": relevance,
                 "explanation": (
                     f"This course is "
@@ -84,8 +79,7 @@ class RecommendationEngine:
 
         return recommendations
 
-
-            def fallback_recommendations(self, top_k=3):
+    def fallback_recommendations(self, top_k=3):
 
         recommendations = []
 
@@ -104,3 +98,15 @@ class RecommendationEngine:
             })
 
         return recommendations
+
+
+def recommend_courses(skills, courses=None, top_n=3):
+
+    engine = RecommendationEngine()
+
+    recommendations = engine.recommend(
+        skills,
+        top_k=top_n
+    )
+
+    return recommendations

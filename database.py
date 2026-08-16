@@ -15,6 +15,11 @@ from datetime import datetime
 
 
 # SQLite database
+
+
+
+
+#postgress
 DATABASE_URL = "sqlite:///skills.db"
 
 engine = create_engine(

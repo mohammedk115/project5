@@ -32,3 +32,7 @@ def extract_skills(user_text):
             extracted_skills.append(skill)
 
     return extracted_skills
+
+
+
+
