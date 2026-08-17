@@ -10,7 +10,6 @@ from recommender import recommend_courses
 class RecommendationWorkflow:
 
     def __init__(self, courses):
-
         self.courses = courses
 
     def run(self, user_text):
@@ -19,8 +18,9 @@ class RecommendationWorkflow:
         skills = extract_skills(user_text)
 
         # Step 2: Validation
-        if not validate_skills(skills):
+        is_valid, validation_message = validate_skills(skills)
 
+        if not is_valid:
             return {
                 "skills": skills,
                 "recommendations": [],
@@ -36,7 +36,6 @@ class RecommendationWorkflow:
 
         # Step 4: Fallback
         if not recommendations:
-
             return {
                 "skills": skills,
                 "recommendations": [],
@@ -48,4 +47,3 @@ class RecommendationWorkflow:
             "recommendations": recommendations,
             "fallback": None
         }
-        
